@@ -1,12 +1,13 @@
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
+import ProfilePage from "scenes/profilePage";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
-
+import PostDetails from "scenes/postDetails";
 
 function App() {
   console.log(useMemo)
@@ -21,6 +22,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/home" element={isAuth ? <HomePage /> : <Navigate to="/" /> } />
+          <Route path="/profile/:userId" element={isAuth ? <ProfilePage /> : <Navigate to="/" /> } />
+          <Route path="/posts/:postId" element={isAuth ? <PostDetails /> : <Navigate to="/" /> } />
         </Routes>
       </ThemeProvider>
       </BrowserRouter>
