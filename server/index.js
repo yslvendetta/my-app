@@ -1,3 +1,6 @@
+// Load environment variables
+dotenv.config();
+
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
@@ -23,7 +26,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load environment variables
-dotenv.config();
+//dotenv.config();
 
 // App init
 const app = express();
@@ -70,9 +73,11 @@ const PORT = process.env.PORT || 5000;
 
 // Set strictQuery to true to suppress the warning (recommended for stricter schema adherence)
 mongoose.set('strictQuery', true);
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => {
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}).catch((err) => console.log("MongoDB connection error:", err));
+
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => {
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch((err) => {
+    console.log("MongoDB connection error:", err);
+  });
