@@ -4,3 +4,6 @@
 
 
 Testing Azure board intergration
+
+
+Checked if DarkModeFeature is implemented and it works very well!!
